@@ -338,7 +338,6 @@ setup_database(){
 
   output "Execute database SQL"
   mysql -u root -p${MYSQL_PASSWORD} ${MYSQL_DB} < cosmic-assets/Database/2.6.sql 
-  mysql -u root -p${MYSQL_PASSWORD} ${MYSQL_DB} < cosmic-assets/Database/rarevalue.sql 
 
   echo "Database Created & Configured!"
 }
