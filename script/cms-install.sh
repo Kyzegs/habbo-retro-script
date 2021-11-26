@@ -276,7 +276,7 @@ cosmic_dep(){
   php composer-setup.php --quiet
   RESULT=$?
   rm composer-setup.php
-  exit $RESULT
+  # exit $RESULT
   
   # Move composer.phar to /usr/local/bin/
   sudo mv composer.phar /usr/local/bin/composer
@@ -325,20 +325,20 @@ setup_database(){
   password_input
 
   output "Create MySQL user."
-  mysql -u root -p -e "CREATE USER '${MYSQL_USER}'@'localhost' IDENTIFIED BY '${MYSQL_PASSWORD}';"
+  mysql -u root -p${MYSQL_PASSWORD} -e "CREATE USER '${MYSQL_USER}'@'localhost' IDENTIFIED BY '${MYSQL_PASSWORD}';"
 
   output "Create database."
-  mysql -u root -p -e "CREATE DATABASE ${MYSQL_DB};"
+  mysql -u root -p${MYSQL_PASSWORD} -e "CREATE DATABASE ${MYSQL_DB};"
 
   output "Grant privileges."
-  mysql -u root -p -e "GRANT ALL PRIVILEGES ON ${MYSQL_DB}.* TO '${MYSQL_USER}'@'localhost' WITH GRANT OPTION;"
+  mysql -u root -p${MYSQL_PASSWORD} -e "GRANT ALL PRIVILEGES ON ${MYSQL_DB}.* TO '${MYSQL_USER}'@'localhost' WITH GRANT OPTION;"
 
   output "Flush privileges."
-  mysql -u root -p -e "FLUSH PRIVILEGES;"
+  mysql -u root -p${MYSQL_PASSWORD} -e "FLUSH PRIVILEGES;"
 
   output "Execute database SQL"
-  mysql -u root -p ${MYSQL_DB} < cosmic-assets/Database/2.6.sql 
-  mysql -u root -p ${MYSQL_DB} < cosmic-assets/Database/rarevalue.sql 
+  mysql -u root -p${MYSQL_PASSWORD} ${MYSQL_DB} < cosmic-assets/Database/2.6.sql 
+  mysql -u root -p${MYSQL_PASSWORD} ${MYSQL_DB} < cosmic-assets/Database/rarevalue.sql 
 
   echo "Database Created & Configured!"
 }

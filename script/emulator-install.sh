@@ -101,15 +101,15 @@ emu_setup(){
 
   # Execute sql file
   output "Execute arcturus base database"
-  mysql -u root -p ${DB_Database} < ./3-0-0-stable/arcturus_3.0.0-stable_base_database.sql
+  mysql -u root -p${DB_Password} ${DB_Database} < ./3-0-0-stable/arcturus_3.0.0-stable_base_database.sql
   
   output "Enter until finish"
-  mysql -u root -p ${DB_Database} -e "ALTER TABLE .users ADD secret_key varchar(40) NULL DEFAULT NULL;"
-  mysql -u root -p ${DB_Database} -e "ALTER TABLE users ADD pincode varchar(11) NULL DEFAULT NULL;"
-  mysql -u root -p ${DB_Database} -e "ALTER TABLE users ADD extra_rank int(2) NULL DEFAULT NULL;"
-  mysql -u root -p ${DB_Database} -e "ALTER TABLE bans MODIFY COLUMN machine_id varchar(255)NOT NULL DEFAULT '';"
-  mysql -u root -p ${DB_Database} -e "ALTER TABLE users ADD template enum('light','dark') NULL DEFAULT 'light';"
-  mysql -u root -p ${DB_Database} -e "SET FOREIGN_KEY_CHECKS = 1;"
+  mysql -u root -p${DB_Password} ${DB_Database} -e "ALTER TABLE .users ADD secret_key varchar(40) NULL DEFAULT NULL;"
+  mysql -u root -p${DB_Password} ${DB_Database} -e "ALTER TABLE users ADD pincode varchar(11) NULL DEFAULT NULL;"
+  mysql -u root -p${DB_Password} ${DB_Database} -e "ALTER TABLE users ADD extra_rank int(2) NULL DEFAULT NULL;"
+  mysql -u root -p${DB_Password} ${DB_Database} -e "ALTER TABLE bans MODIFY COLUMN machine_id varchar(255)NOT NULL DEFAULT '';"
+  mysql -u root -p${DB_Password} ${DB_Database} -e "ALTER TABLE users ADD template enum('light','dark') NULL DEFAULT 'light';"
+  mysql -u root -p${DB_Password} ${DB_Database} -e "SET FOREIGN_KEY_CHECKS = 1;"
 
 
   # Create new run.sh file
