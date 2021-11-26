@@ -124,7 +124,7 @@ setup_nitro(){
   # Clone c_images
   git clone https://github.com/Izzxt/cata-assets.git
 
-  mv cata-assests/c_images /var/www/$DOMAIN
+  mv cata-assets/c_images /var/www/$DOMAIN
 
   rm -rf cata-assets
 
